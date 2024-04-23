@@ -3,10 +3,12 @@ import Header from "./Header";
 import { BG_URL } from "./utils/constants";
 import { useRef } from "react";
 import { validateFields } from "./utils/validate";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   const [signInForm, setSignInForm] = useState(true);
   const [errorMessage, setErrorMessage] = useState(null);
+  const navigate = useNavigate();
 
   const handleSignUp = () => {
     setSignInForm(!signInForm);
@@ -21,6 +23,7 @@ const Login = () => {
       password.current.value
     );
     setErrorMessage(isFieldValid);
+    if (!errorMessage) navigate("/browse");
   };
 
   return (
